@@ -1,3 +1,4 @@
-<resources>
-    <string name="app_name">PokemonGen1Lookup</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">PokemonGen1Lookup</string>
+    <string name="loading_string">Loading…</string>
 </resources>

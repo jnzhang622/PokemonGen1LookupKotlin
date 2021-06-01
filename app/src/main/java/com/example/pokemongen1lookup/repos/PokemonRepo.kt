@@ -4,16 +4,17 @@ import com.example.pokemongen1lookup.data.api.models.PokemonGen1ResponseDTO
 import com.example.pokemongen1lookup.data.api.models.singlepokemonmodels.SinglePokemonResponseDTO
 import com.example.pokemongen1lookup.data.api.network.PokemonAPIManager
 import io.reactivex.Single
+import retrofit2.Response
 
 class PokemonRepo {
 
-    fun getGen1Pokemon() : Single<PokemonGen1ResponseDTO> {
+    suspend fun getGen1Pokemon() : Response<PokemonGen1ResponseDTO> {
         return PokemonAPIManager().getGen1Pokemon(
             "151"
         )
     }
 
-    fun getSinglePokemon(name: String) : Single<SinglePokemonResponseDTO> {
+    suspend fun getSinglePokemon(name: String) : Response<SinglePokemonResponseDTO> {
         return PokemonAPIManager().getSinglePokemon(
             name
         )

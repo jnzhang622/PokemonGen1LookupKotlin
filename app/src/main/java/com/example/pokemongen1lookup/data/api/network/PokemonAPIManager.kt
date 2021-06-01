@@ -1,12 +1,11 @@
-package com.example.pokemongen1lookup.data.api.network;
+package com.example.pokemongen1lookup.data.api.network
 
 import com.example.pokemongen1lookup.data.api.models.PokemonGen1ResponseDTO
 import com.example.pokemongen1lookup.data.api.models.singlepokemonmodels.SinglePokemonResponseDTO
-import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 class PokemonAPIManager {
     private val service: PokemonApiService
@@ -16,24 +15,24 @@ class PokemonAPIManager {
         service = retrofit.create(PokemonApiService::class.java)
     }
 
-    fun getSinglePokemon(name: String): Single<SinglePokemonResponseDTO> {
+    suspend fun getSinglePokemon(name: String): Response<SinglePokemonResponseDTO> {
         return service.getSinglePokemon(name)
     }
 
-    fun getGen1Pokemon(limit: String): Single<PokemonGen1ResponseDTO> {
+    suspend fun getGen1Pokemon(limit: String): Response<PokemonGen1ResponseDTO> {
         return service.getGen1Pokemon(limit)
     }
 
     interface PokemonApiService {
 
         @GET("/api/v2/pokemon/{name}")
-        fun getSinglePokemon(
+        suspend fun getSinglePokemon(
             @Path("name") name: String,
-        ): Single<SinglePokemonResponseDTO>
+        ): Response<SinglePokemonResponseDTO>
 
         @GET("/api/v2/pokemon")
-        fun getGen1Pokemon(
+        suspend fun getGen1Pokemon(
             @Query("limit") limit: String,
-        ): Single<PokemonGen1ResponseDTO>
+        ): Response<PokemonGen1ResponseDTO>
     }
 }
